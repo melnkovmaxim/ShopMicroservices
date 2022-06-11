@@ -6,10 +6,10 @@ namespace Shop.Infrastructure.Mongo;
 public class MongoConfig
 {
     [Required]
-    [ConfigurationKeyName("CONNECTION_STRING")]
+    [ConfigurationKeyName("MONGO:CONNECTION_STRING")]
     public string ConnectionString { get; set; } = null!;
     
     [Required]
-    [ConfigurationKeyName("DATABASE")]
+    [ConfigurationKeyName("MONGO:DATABASE")]
     public string Database { get; set; } = null!;
 }
