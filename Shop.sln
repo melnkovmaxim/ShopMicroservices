@@ -10,6 +10,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Domain", "Shop.Domain\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Infrastructure", "Shop.Infrastructure\Shop.Infrastructure.csproj", "{00A66A7D-87E4-4F1F-96EF-4E5AACB92F59}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Product.Query.Api", "Shop.Product.Query.Api\Shop.Product.Query.Api.csproj", "{ACC74A8D-1161-4C3B-A8EB-DEE1279E1120}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Product.DataProvider", "Shop.Product.DataProvider\Shop.Product.DataProvider.csproj", "{5CC283F8-FCE7-459F-A1F8-5B4D9A5999BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +40,13 @@ Global
 		{00A66A7D-87E4-4F1F-96EF-4E5AACB92F59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00A66A7D-87E4-4F1F-96EF-4E5AACB92F59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00A66A7D-87E4-4F1F-96EF-4E5AACB92F59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACC74A8D-1161-4C3B-A8EB-DEE1279E1120}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACC74A8D-1161-4C3B-A8EB-DEE1279E1120}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACC74A8D-1161-4C3B-A8EB-DEE1279E1120}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACC74A8D-1161-4C3B-A8EB-DEE1279E1120}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CC283F8-FCE7-459F-A1F8-5B4D9A5999BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CC283F8-FCE7-459F-A1F8-5B4D9A5999BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CC283F8-FCE7-459F-A1F8-5B4D9A5999BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CC283F8-FCE7-459F-A1F8-5B4D9A5999BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
