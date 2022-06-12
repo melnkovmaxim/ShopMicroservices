@@ -16,4 +16,18 @@
       <ProjectReference Include="..\Shop.Infrastructure\Shop.Infrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Shop.Domain\bin\Debug\net6.0\Shop.Domain.deps.json" />
+      <_ContentIncludedByDefault Remove="Shop.Domain\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="Shop.Domain\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="Shop.Domain\obj\Shop.Domain.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="Shop.Infrastructure\bin\Debug\net6.0\Shop.Infrastructure.deps.json" />
+      <_ContentIncludedByDefault Remove="Shop.Infrastructure\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="Shop.Infrastructure\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="Shop.Infrastructure\obj\Shop.Infrastructure.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="Shop.User.Api\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="Shop.User.Api\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="Shop.User.Api\obj\Shop.User.Api.csproj.nuget.dgspec.json" />
+    </ItemGroup>
+
 </Project>

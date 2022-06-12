@@ -1,3 +1,6 @@
+using MassTransit;
+using Shop.Domain.Commands;
+using Shop.Domain.Queries;
 using Shop.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,7 +8,10 @@ var configuration = builder.Configuration;
 var services = builder.Services;
 
 services.AddControllers();
-services.AddRabbitMq(configuration);
+services.AddRabbitMq(configuration, new List<Action<IBusRegistrationConfigurator>>()
+{
+    c => c.AddRequestClient<GetProductByIdQuery>()
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
