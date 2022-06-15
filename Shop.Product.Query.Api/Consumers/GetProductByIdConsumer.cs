@@ -5,11 +5,11 @@ using Shop.Product.DataProvider.Services;
 
 namespace Shop.Product.Query.Api.Handlers;
 
-public class GetProductByIdHandler: IConsumer<GetProductByIdQuery>
+public class GetProductByIdConsumer: IConsumer<GetProductByIdQuery>
 {
     private readonly IProductService _productService;
 
-    public GetProductByIdHandler(IProductService productService)
+    public GetProductByIdConsumer(IProductService productService)
     {
         _productService = productService;
     }

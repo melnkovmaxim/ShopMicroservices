@@ -1,10 +1,10 @@
+using System.Reflection;
 using MassTransit;
 using MongoDB.Driver;
 using Shop.Infrastructure;
 using Shop.Infrastructure.Extensions;
 using Shop.Infrastructure.Mongo;
 using Shop.Product.Api;
-using Shop.Product.Api.Handlers;
 using Shop.Product.DataProvider.Repositories;
 using Shop.Product.DataProvider.Services;
 
@@ -22,15 +22,7 @@ configuration
 
 services.AddControllers();
 services.AddMongoDb(configuration);
-services.AddRabbitMq(configuration,
-new List<Action<IBusRegistrationConfigurator>>()
-{
-    c => c.AddConsumer<ProductCreateHandler>()
-},
-new List<Action<IReceiveEndpointConfigurator, IBusRegistrationContext>>()
-{
-    (cfg, ctx) => cfg.ConfigureConsumer<ProductCreateHandler>(ctx)
-}, "create_product");
+services.AddRabbitMq(configuration, Assembly.GetExecutingAssembly());
 services.AddScoped<IProductRepository, ProductRepository>();
 services.AddScoped<IProductService, ProductService>();
 services.AddHostedService<BusWorker>();

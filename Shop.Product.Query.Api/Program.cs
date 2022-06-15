@@ -1,3 +1,4 @@
+using System.Reflection;
 using MassTransit;
 using MongoDB.Driver;
 using Shop.Domain.Commands;
@@ -15,10 +16,7 @@ var services = builder.Services;
 
 services.AddControllers();
 services.AddMongoDb(configuration);
-services.AddRabbitMq(configuration, new List<Action<IBusRegistrationConfigurator>>()
-{
-    c => c.AddConsumer<GetProductByIdHandler>()
-});
+services.AddRabbitMq(configuration, Assembly.GetExecutingAssembly());
 services.AddScoped<IProductRepository, ProductRepository>();
 services.AddScoped<IProductService, ProductService>();
 services.AddHostedService<BusWorker>();

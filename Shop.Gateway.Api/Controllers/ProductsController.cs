@@ -37,7 +37,6 @@ public class ProductsController: ControllerBase
     [ProducesResponseType(StatusCodes.Status202Accepted)]
     public async Task<IActionResult> AddProduct([FromBody] ProductCreateCommand command)
     {
-        _bus.Send
         var uri = new Uri("rabbitmq://localhost:5672/create_product");
         var endpoint = await _bus.GetSendEndpoint(uri);
 
