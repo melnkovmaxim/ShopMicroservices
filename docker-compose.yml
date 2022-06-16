@@ -2,6 +2,18 @@ version: '3.8'
 
 services:
 
+  mssql:
+    image: mcr.microsoft.com/mssql/server:latest
+    user: root
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Pass@word
+    ports:
+      - "1433:1433"
+    volumes:
+      - ~/docker/mssql:/var/opt/mssql/data
+
+
   mongo:
     image: mongo:latest
     ports:
