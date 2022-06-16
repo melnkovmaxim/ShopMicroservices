@@ -1,13 +1,46 @@
+using System.Reflection;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
+using Shop.Infrastructure.Extensions;
+using Shop.Infrastructure.Mongo;
+using Shop.Infrastructure.Sql;
+using Shop.User.Api;
+using Shop.User.Api.Entities;
+
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
+var services = builder.Services;
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+services.AddOptions<SqlConfig>()
+    .Bind(configuration)
+    .ValidateDataAnnotations();
+
+services.AddControllers();
+services.AddRabbitMq(configuration, Assembly.GetExecutingAssembly());
+services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration["SQL:CONNECTION_STRING"]));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+services.Configure<IdentityOptions>(config =>
+{
+    config.Password.RequireDigit = false;
+    config.Password.RequireNonAlphanumeric = false;
+    config.Password.RequireUppercase = false;
+});
+services.AddIdentity<ApplicationUser, ApplicationRole>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+services.AddEndpointsApiExplorer();
+services.AddSwaggerGen();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var sqlDb = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+    sqlDb.Database.EnsureCreated();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
