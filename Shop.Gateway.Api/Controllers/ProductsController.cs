@@ -20,7 +20,7 @@ public class ProductsController: ControllerBase
     }
 
     [HttpGet]
-    [ProducesResponseType(StatusCodes.Status202Accepted)]
+    [ProducesResponseType(typeof(ProductCreatedEvent), StatusCodes.Status202Accepted)]
     public async Task<IActionResult> GetProduct(string productId)
     {
         var command = new GetProductByIdQuery()

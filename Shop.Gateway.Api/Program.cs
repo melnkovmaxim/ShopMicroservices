@@ -1,6 +1,7 @@
 using System.Reflection;
 using MassTransit;
 using Shop.Domain.Commands;
+using Shop.Domain.Events;
 using Shop.Domain.Queries;
 using Shop.Infrastructure.Extensions;
 

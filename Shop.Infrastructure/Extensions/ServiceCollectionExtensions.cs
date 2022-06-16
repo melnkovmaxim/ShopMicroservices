@@ -6,6 +6,7 @@ using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using Shop.Domain.Commands;
 using Shop.Domain.Events;
+using Shop.Domain.Queries;
 using Shop.Infrastructure.MessageBus;
 using Shop.Infrastructure.Mongo;
 
@@ -58,6 +59,8 @@ public static class ServiceCollectionExtensions
                 
                 config.ConfigureEndpoints(context);
             }));
+
+            
         });
     }
 }
