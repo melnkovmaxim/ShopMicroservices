@@ -1,7 +1,7 @@
 ﻿using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Shop.Infrastructure.MessageBus;
+using Shop.Infrastructure.Options;
 
 namespace Shop.Infrastructure.Extensions;
 
@@ -12,7 +12,7 @@ public static class BusRegistrationContextExtensions
     {
         return Bus.Factory.CreateUsingRabbitMq(config =>
         {
-            var rabbitConfig = context.GetRequiredService<IOptions<RabbitMqConfig>>().Value;
+            var rabbitConfig = context.GetRequiredService<IOptions<RabbitMqOptions>>().Value;
 
             config.Host(new Uri(rabbitConfig.ConnectionString), hconfig =>
             {

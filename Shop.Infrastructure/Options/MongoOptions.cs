@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.Extensions.Configuration;
 
-namespace Shop.Infrastructure.Mongo;
+namespace Shop.Infrastructure.Options;
 
-public class MongoConfig
+public class MongoOptions
 {
     [Required]
     [ConfigurationKeyName("MONGO:CONNECTION_STRING")]

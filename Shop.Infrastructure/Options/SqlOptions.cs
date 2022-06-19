@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.Extensions.Configuration;
 
-namespace Shop.Infrastructure.Sql;
+namespace Shop.Infrastructure.Options;
 
-public class SqlConfig
+public class SqlOptions
 {
     [Required]
     [ConfigurationKeyName("SQL:CONNECTION_STRING")]

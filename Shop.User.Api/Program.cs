@@ -2,9 +2,10 @@ using System.Reflection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
+using Shop.Infrastructure.Authentication;
 using Shop.Infrastructure.Extensions;
 using Shop.Infrastructure.Mongo;
-using Shop.Infrastructure.Sql;
+using Shop.Infrastructure.Options;
 using Shop.User.Api;
 using Shop.User.Api.Entities;
 
@@ -14,11 +15,16 @@ var services = builder.Services;
 
 // Add services to the container.
 
-services.AddOptions<SqlConfig>()
+services.AddOptions<SqlOptions>()
+    .Bind(configuration)
+    .ValidateDataAnnotations();
+
+services.AddOptions<JwtOptions>()
     .Bind(configuration)
     .ValidateDataAnnotations();
 
 services.AddControllers();
+services.AddJwtAuthentication(configuration);
 services.AddRabbitMq(configuration, Assembly.GetExecutingAssembly());
 services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration["SQL:CONNECTION_STRING"]));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

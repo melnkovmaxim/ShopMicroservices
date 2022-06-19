@@ -2,17 +2,20 @@
 using Microsoft.AspNetCore.Identity;
 using Shop.Domain.Commands;
 using Shop.Domain.Events;
+using Shop.Infrastructure.Authentication;
 using Shop.User.Api.Entities;
 
-namespace Shop.Product.Api.Consumers;
+namespace Shop.User.Api.Consumers;
 
 public class UserLoginConsumer: IConsumer<UserLoginCommand>
 {
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly IAuthenticationService _authenticationService;
 
-    public UserLoginConsumer(UserManager<ApplicationUser> userManager)
+    public UserLoginConsumer(UserManager<ApplicationUser> userManager, IAuthenticationService authenticationService)
     {
         _userManager = userManager;
+        _authenticationService = authenticationService;
     }
     
     public async Task Consume(ConsumeContext<UserLoginCommand> context)
@@ -25,15 +28,8 @@ public class UserLoginConsumer: IConsumer<UserLoginCommand>
             throw new Exception("Неверный логин или пароль");
         }
 
-        var result = new UserCreatedEvent()
-        {
-            Email = user.Email,
-            Password = user.PasswordHash,
-            Username = user.UserName,
-            UserId = user.Id.ToString(),
-            PhoneNumber = user.PhoneNumber
-        };
+        var jwtToken = _authenticationService.CreateJwt(user.Id);
 
-        await context.RespondAsync(result);
+        await context.RespondAsync<JwtToken>(jwtToken);
     }
 }

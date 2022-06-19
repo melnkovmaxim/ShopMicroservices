@@ -1,8 +1,11 @@
 ﻿using MassTransit;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Domain.Commands;
 using Shop.Domain.Events;
+using Shop.Infrastructure.Authentication;
 
 namespace Shop.Gateway.Api.Controllers;
 
@@ -35,7 +38,7 @@ public class UserController: ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> Login([FromBody] UserLoginCommand command)
     {
-        var result = await _loginClient.GetResponse<UserCreatedEvent>(command);
+        var result = await _loginClient.GetResponse<JwtToken>(command);
 
         return Ok(result.Message);
     }

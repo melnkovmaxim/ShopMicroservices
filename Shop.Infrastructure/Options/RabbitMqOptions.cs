@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.Extensions.Configuration;
 
-namespace Shop.Infrastructure.MessageBus;
+namespace Shop.Infrastructure.Options;
 
-public class RabbitMqConfig
+public class RabbitMqOptions
 {
     [Required]
     [ConfigurationKeyName("RABBITMQ:CONNECTION_STRING")]

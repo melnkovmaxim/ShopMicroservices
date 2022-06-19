@@ -1,4 +1,6 @@
 ﻿using MassTransit;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Domain.Commands;
 using Shop.Domain.Events;
@@ -34,6 +36,7 @@ public class ProductsController: ControllerBase
     }
 
     [HttpPost]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ProducesResponseType(StatusCodes.Status202Accepted)]
     public async Task<IActionResult> AddProduct([FromBody] ProductCreateCommand command)
     {
