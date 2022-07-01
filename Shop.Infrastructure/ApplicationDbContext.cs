@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Shop.User.Api.Entities;
+using Shop.Domain.Entities;
 
-namespace Shop.User.Api;
+namespace Shop.Infrastructure;
 
 public class ApplicationDbContext: IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
 {

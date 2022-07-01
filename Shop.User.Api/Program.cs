@@ -2,12 +2,13 @@ using System.Reflection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
+using Shop.Domain.Entities;
+using Shop.Infrastructure;
 using Shop.Infrastructure.Authentication;
 using Shop.Infrastructure.Extensions;
 using Shop.Infrastructure.Mongo;
 using Shop.Infrastructure.Options;
 using Shop.User.Api;
-using Shop.User.Api.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;

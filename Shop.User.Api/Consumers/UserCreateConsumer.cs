@@ -1,7 +1,7 @@
 ﻿using MassTransit;
 using Microsoft.AspNetCore.Identity;
 using Shop.Domain.Commands;
-using Shop.User.Api.Entities;
+using Shop.Domain.Entities;
 
 namespace Shop.User.Api.Consumers;
 

@@ -1,11 +1,10 @@
 ﻿using MassTransit;
 using Microsoft.AspNetCore.Identity;
 using Shop.Domain.Commands;
-using Shop.Domain.Events;
+using Shop.Domain.Entities;
 using Shop.Infrastructure.Authentication;
-using Shop.User.Api.Entities;
 
-namespace Shop.User.Api.Consumers;
+namespace Shop.User.Query.Api.Consumers;
 
 public class UserLoginConsumer: IConsumer<UserLoginCommand>
 {

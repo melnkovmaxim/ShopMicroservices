@@ -1,7 +1,6 @@
 ﻿using MassTransit;
-using Shop.User.Api.Consumers;
 
-namespace Shop.Product.Api.Consumers;
+namespace Shop.User.Query.Api.Consumers;
 
 public class UserLoginConsumerDefinitions: ConsumerDefinition<UserLoginConsumer>
 {
