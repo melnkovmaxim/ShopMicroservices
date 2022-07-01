@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Product.Query.Api", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Product.DataProvider", "Shop.Product.DataProvider\Shop.Product.DataProvider.csproj", "{5CC283F8-FCE7-459F-A1F8-5B4D9A5999BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Gateway.Api.Tests", "Shop.Gateway.Api.Tests\Shop.Gateway.Api.Tests.csproj", "{3BBFE6E4-1CEA-4ED1-9F94-CEFF9E08778B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,9 @@ Global
 		{5CC283F8-FCE7-459F-A1F8-5B4D9A5999BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CC283F8-FCE7-459F-A1F8-5B4D9A5999BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CC283F8-FCE7-459F-A1F8-5B4D9A5999BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BBFE6E4-1CEA-4ED1-9F94-CEFF9E08778B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BBFE6E4-1CEA-4ED1-9F94-CEFF9E08778B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BBFE6E4-1CEA-4ED1-9F94-CEFF9E08778B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BBFE6E4-1CEA-4ED1-9F94-CEFF9E08778B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

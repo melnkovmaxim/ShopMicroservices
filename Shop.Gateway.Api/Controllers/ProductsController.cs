@@ -22,7 +22,7 @@ public class ProductsController: ControllerBase
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(ProductCreatedEvent), StatusCodes.Status202Accepted)]
+    [ProducesResponseType(typeof(ProductCreatedEvent), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetProduct(string productId)
     {
         var command = new GetProductByIdQuery()
@@ -32,7 +32,7 @@ public class ProductsController: ControllerBase
         
         var product = await _getByIdRequest.GetResponse<ProductCreatedEvent>(command);
 
-        return Ok(product);
+        return Ok(product.Message);
     }
 
     [HttpPost]
