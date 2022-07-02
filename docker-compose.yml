@@ -2,6 +2,13 @@ version: '3.8'
 
 services:
 
+  redis:
+    image: redis:latest
+    ports:
+      - '6379:6379'
+    volumes:
+      - ~/docker/redis:/data
+
   mssql:
     image: mcr.microsoft.com/mssql/server:latest
     user: root
@@ -12,7 +19,6 @@ services:
       - "1433:1433"
     volumes:
       - ~/docker/mssql:/var/opt/mssql/data
-
 
   mongo:
     image: mongo:latest
