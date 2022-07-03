@@ -1,4 +1,6 @@
-﻿using MongoDB.Driver;
+﻿using System.Text.Json;
+using Microsoft.Extensions.Caching.Distributed;
+using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
 namespace Shop.Cart.DataProvider.Repositories;
@@ -7,28 +9,32 @@ using Shop.Infrastructure.Cart;
 
 public class CartRepository: ICartRepository
 {
-    private readonly IMongoDatabase _mongo;
-    private readonly IMongoCollection<Cart> _carts;
+    private readonly IDistributedCache _distributedCache;
 
-    public CartRepository(IMongoDatabase mongo)
+    public CartRepository(IDistributedCache distributedCache)
     {
-        _mongo = mongo;
-        _carts = mongo.GetCollection<Cart>("cart");
+        _distributedCache = distributedCache;
     }
     
-    public Task<bool> AddCartAsync(Cart cart)
+    public Task AddCartAsync(Cart cart)
     {
-        _carts.InsertOne(cart);
+        return _distributedCache.SetStringAsync(cart.UserId, JsonSerializer.Serialize(cart));
     }
 
-    public Task<Cart> GetUserCartAsync(string userId)
+    public async Task<Cart> GetUserCartOrDefaultAsync(string userId)
     {
-        _carts.AsQueryable()
-            .FirstOrDefaultAsync(x => x.)
+        var rawCart = await _distributedCache.GetStringAsync(userId);
+
+        if (rawCart is null)
+        {
+            return new Cart();
+        }
+
+        return JsonSerializer.Deserialize<Cart>(rawCart);
     }
 
-    public Task<bool> RemoveUserCartAsync(string cartId)
+    public Task RemoveUserCartAsync(string cartId)
     {
-        throw new NotImplementedException();
+        return _distributedCache.RemoveAsync(cartId);
     }
 }

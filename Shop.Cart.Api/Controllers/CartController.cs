@@ -19,7 +19,7 @@ public class CartController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Get(string userId)
     {
-        var cart = await _cartRepository.GetUserCartAsync(userId);
+        var cart = await _cartRepository.GetUserCartOrDefaultAsync(userId);
 
         return Ok(cart);
     }

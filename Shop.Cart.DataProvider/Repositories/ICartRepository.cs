@@ -5,7 +5,7 @@ using Shop.Infrastructure.Cart;
 
 public interface ICartRepository
 {
-    Task<bool> AddCartAsync(Cart cart);
-    Task<Cart> GetUserCartAsync(string userId);
-    Task<bool> RemoveUserCartAsync(string cartId);
+    Task AddCartAsync(Cart cart);
+    Task<Cart> GetUserCartOrDefaultAsync(string userId);
+    Task RemoveUserCartAsync(string cartId);
 }
