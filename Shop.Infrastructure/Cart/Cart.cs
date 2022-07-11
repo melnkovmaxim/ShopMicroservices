@@ -1,4 +1,7 @@
-﻿namespace Shop.Infrastructure.Cart;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace Shop.Infrastructure.Cart;
 
 public class Cart
 {

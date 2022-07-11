@@ -24,6 +24,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Cart.Api", "Shop.Cart.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Cart.DataProvider", "Shop.Cart.DataProvider\Shop.Cart.DataProvider.csproj", "{AAE145E6-398F-4E7D-9AC5-C70FC45E9902}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Order.Api", "Shop.Order.Api\Shop.Order.Api.csproj", "{0107AFE1-5967-4867-9866-180CA6AD9F34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Order.DataProvider", "Shop.Order.DataProvider\Shop.Order.DataProvider.csproj", "{1CA59A40-14D6-4928-8E80-A1E00DE6008F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,5 +82,13 @@ Global
 		{AAE145E6-398F-4E7D-9AC5-C70FC45E9902}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAE145E6-398F-4E7D-9AC5-C70FC45E9902}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAE145E6-398F-4E7D-9AC5-C70FC45E9902}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0107AFE1-5967-4867-9866-180CA6AD9F34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0107AFE1-5967-4867-9866-180CA6AD9F34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0107AFE1-5967-4867-9866-180CA6AD9F34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0107AFE1-5967-4867-9866-180CA6AD9F34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CA59A40-14D6-4928-8E80-A1E00DE6008F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CA59A40-14D6-4928-8E80-A1E00DE6008F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CA59A40-14D6-4928-8E80-A1E00DE6008F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CA59A40-14D6-4928-8E80-A1E00DE6008F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

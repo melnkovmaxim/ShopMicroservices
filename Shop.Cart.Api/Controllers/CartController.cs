@@ -6,7 +6,7 @@ namespace Shop.Cart.Api.Controllers;
 using Shop.Infrastructure.Cart;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/v1/[controller]")]
 public class CartController : ControllerBase
 {
     private readonly ICartRepository _cartRepository;
