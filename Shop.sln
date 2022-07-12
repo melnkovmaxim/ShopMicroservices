@@ -28,6 +28,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Order.Api", "Shop.Orde
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Order.DataProvider", "Shop.Order.DataProvider\Shop.Order.DataProvider.csproj", "{1CA59A40-14D6-4928-8E80-A1E00DE6008F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Wallet.Api", "Shop.Wallet.Api\Shop.Wallet.Api.csproj", "{61F30017-6EA3-4461-9EB2-FEB5299DBBD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Wallet.DataProvider", "Shop.Wallet.DataProvider\Shop.Wallet.DataProvider.csproj", "{4448E05C-7188-41C6-A32D-CE30DF492BFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,5 +94,13 @@ Global
 		{1CA59A40-14D6-4928-8E80-A1E00DE6008F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CA59A40-14D6-4928-8E80-A1E00DE6008F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CA59A40-14D6-4928-8E80-A1E00DE6008F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61F30017-6EA3-4461-9EB2-FEB5299DBBD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61F30017-6EA3-4461-9EB2-FEB5299DBBD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61F30017-6EA3-4461-9EB2-FEB5299DBBD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61F30017-6EA3-4461-9EB2-FEB5299DBBD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4448E05C-7188-41C6-A32D-CE30DF492BFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4448E05C-7188-41C6-A32D-CE30DF492BFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4448E05C-7188-41C6-A32D-CE30DF492BFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4448E05C-7188-41C6-A32D-CE30DF492BFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
