@@ -1,5 +1,6 @@
 using System.Reflection;
 using Shop.Infrastructure.Extensions;
+using Shop.Wallet.DataProvider.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddMongoDb(builder.Configuration);
 builder.Services.AddRabbitMq(builder.Configuration, Assembly.GetExecutingAssembly());
+builder.Services.AddScoped<IWalletRepository, WalletRepository>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

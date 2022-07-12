@@ -7,5 +7,5 @@ using Infrastructure.Wallet;
 public interface IWalletRepository
 {
     Task AddFundsAsync(FundsAddCommand command);
-    Task DeductFundsAsync(DeductFundsCommand command);
+    Task DeductFundsAsync(FundsDeductCommand command);
 }

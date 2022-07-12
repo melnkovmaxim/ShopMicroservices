@@ -17,38 +17,50 @@ public class WalletRepository: IWalletRepository
     
     public async Task AddFundsAsync(FundsAddCommand command)
     {
-        // var existedWallet = await GetWalletAsync(command.UserId);
-        //
-        // if (existedWallet is null)
-        // {
-        //     var wallet = new Wallet()
-        //     {
-        //         UserId = command.UserId,
-        //         Amount = command.CreditAmount
-        //     };
-        //     
-        //     await _walletCollection.UpdateOneAsync(wallet);
-        //     
-        //     return 
-        // }
-        //
-        // if (existedWallet is not null)
-        // {
-        //     existedWallet.Amount += command.CreditAmount;
-        //     
-        //     return _walletCollection
-        // }
+        var existedWallet = await GetWalletAsync(command.UserId);
         
+        if (existedWallet is null)
+        {
+            var wallet = new Wallet()
+            {
+                UserId = command.UserId,
+                Amount = command.CreditAmount
+            };
+
+            await _walletCollection.InsertOneAsync(wallet);
+
+            return;
+        }
         
+        existedWallet.Amount += command.CreditAmount;
+
+        await _walletCollection.ReplaceOneAsync(w => w.UserId == existedWallet.UserId, existedWallet);
     }
 
-    public Task DeductFundsAsync(DeductFundsCommand command)
+    public async Task DeductFundsAsync(FundsDeductCommand command)
     {
-        throw new NotImplementedException();
+        var existedWallet = await GetWalletAsync(command.UserId);
+        
+        if (existedWallet is null)
+        {
+            var wallet = new Wallet()
+            {
+                UserId = command.UserId,
+                Amount = -command.DebitAmount
+            };
+
+            await _walletCollection.InsertOneAsync(wallet);
+
+            return;
+        }
+        
+        existedWallet.Amount -= command.DebitAmount;
+
+        await _walletCollection.ReplaceOneAsync(w => w.UserId == existedWallet.UserId, existedWallet);
     }
 
     private Task<Wallet?> GetWalletAsync(string userId)
     {
-        return _walletCollection.AsQueryable().FirstOrDefaultAsync(x => x.UserId == userId);
+        return _walletCollection.AsQueryable().FirstOrDefaultAsync(x => x.UserId == userId)!;
     }
 }

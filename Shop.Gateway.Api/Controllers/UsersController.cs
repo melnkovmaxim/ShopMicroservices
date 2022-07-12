@@ -11,12 +11,12 @@ namespace Shop.Gateway.Api.Controllers;
 
 [ApiController]
 [Route("/api/v1/[controller]")]
-public class UserController: ControllerBase
+public class UsersController: ControllerBase
 {
     private readonly IBusControl _bus;
     private readonly IRequestClient<UserLoginCommand> _loginClient;
 
-    public UserController(IBusControl bus, IRequestClient<UserLoginCommand> loginClient)
+    public UsersController(IBusControl bus, IRequestClient<UserLoginCommand> loginClient)
     {
         _bus = bus;
         _loginClient = loginClient;
