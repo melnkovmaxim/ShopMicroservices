@@ -32,6 +32,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Wallet.Api", "Shop.Wal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Wallet.DataProvider", "Shop.Wallet.DataProvider\Shop.Wallet.DataProvider.csproj", "{4448E05C-7188-41C6-A32D-CE30DF492BFF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Inventory.Api", "Shop.Inventory.Api\Shop.Inventory.Api.csproj", "{C609D2D8-8609-4325-93C1-0EB13D79889A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Inventory.DataProvider", "Shop.Inventory.DataProvider\Shop.Inventory.DataProvider.csproj", "{F5E59CA6-B890-4B2C-818D-2CF95DE6881D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -102,5 +106,13 @@ Global
 		{4448E05C-7188-41C6-A32D-CE30DF492BFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4448E05C-7188-41C6-A32D-CE30DF492BFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4448E05C-7188-41C6-A32D-CE30DF492BFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C609D2D8-8609-4325-93C1-0EB13D79889A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C609D2D8-8609-4325-93C1-0EB13D79889A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C609D2D8-8609-4325-93C1-0EB13D79889A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C609D2D8-8609-4325-93C1-0EB13D79889A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5E59CA6-B890-4B2C-818D-2CF95DE6881D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5E59CA6-B890-4B2C-818D-2CF95DE6881D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5E59CA6-B890-4B2C-818D-2CF95DE6881D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5E59CA6-B890-4B2C-818D-2CF95DE6881D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
