@@ -2,5 +2,5 @@
 
 public class ProductReleaseCommand
 {
-    public List<StockProduct> Products { get; set; } = null!;
+    public List<StockProduct> Items { get; set; } = null!;
 }

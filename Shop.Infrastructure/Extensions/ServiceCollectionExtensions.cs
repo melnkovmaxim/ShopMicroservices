@@ -50,9 +50,11 @@ public static class ServiceCollectionExtensions
         services.AddMassTransit(config =>
         {
             config.AddConsumers(assemblySource);
-            config.AddBus(context => Bus.Factory.CreateUsingRabbitMq(config =>
+            config.AddActivities(assemblySource);
+            config.SetKebabCaseEndpointNameFormatter();
+            config.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(config =>
             {
-                var rabbitConfig = context.GetRequiredService<IOptions<RabbitMqOptions>>().Value;
+                var rabbitConfig = provider.GetRequiredService<IOptions<RabbitMqOptions>>().Value;
 
                 config.Host(new Uri(rabbitConfig.ConnectionString), hconfig =>
                 {
@@ -60,7 +62,7 @@ public static class ServiceCollectionExtensions
                     hconfig.Password(rabbitConfig.Password);
                 });
 
-                config.ConfigureEndpoints(context);
+                config.ConfigureEndpoints(provider);
             }));
         });
     }

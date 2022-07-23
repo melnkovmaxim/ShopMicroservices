@@ -48,7 +48,7 @@ public class StockRepository : IStockRepository
 
         try
         {
-            foreach (var item in command.Products)
+            foreach (var item in command.Items)
             {
                 var product = await GetProductByIdAsync(item.ProductId);
 
