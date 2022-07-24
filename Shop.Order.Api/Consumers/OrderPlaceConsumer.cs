@@ -10,7 +10,7 @@ namespace Shop.Order.Api.Consumers;
 
 using Infrastructure.Order;
 
-public class OrderPlaceConsumer: IConsumer<Order>
+public class OrderPlaceConsumer: IConsumer<Order>, IConsumer<RoutingSlipCompleted>, IConsumer<RoutingSlipFaulted>
 {
     
     private IEndpointNameFormatter _endpointNameFormatter;
@@ -53,9 +53,39 @@ public class OrderPlaceConsumer: IConsumer<Order>
         builder.AddActivity("UPDATE_ORDER", new Uri($"rabbitmq://localhost/{orderUpdateQueueName}"), order);
         
         var cartUpdateQueueName = _endpointNameFormatter.ExecuteActivity<CartUpdateActivity, Cart>();
-        builder.AddActivity("UPDATE_ORDER", new Uri($"rabbitmq://localhost/{cartUpdateQueueName}"), 
+        builder.AddActivity("UPDATE_CART", new Uri($"rabbitmq://localhost/{cartUpdateQueueName}"), 
             new { order.UserId });
 
         return builder.Build();
+    }
+
+    public async Task Consume(ConsumeContext<RoutingSlipCompleted> context)
+    {
+        var message = context.Message;
+        
+        var requestId = context.GetVariable<Guid>("RequestId");
+        var responseAddress = context.GetVariable<Uri>("ResponseAddress");
+        var order = context.GetVariable<Order>("PlacedOrder");
+
+        if(requestId.HasValue && responseAddress != null)
+        {
+            var endpoint = await context.GetSendEndpoint(responseAddress);
+            await endpoint.Send(new OrderPlacedEvent() { OrderId = order.OrderId, RequestId = requestId.Value.ToString() });
+        }
+    }
+
+    public async Task Consume(ConsumeContext<RoutingSlipFaulted> context)
+    {
+        var message = context.Message;
+        
+        var requestId = context.GetVariable<Guid>("RequestId");
+        var responseAddress = context.GetVariable<Uri>("ResponseAddress");
+        var order = context.GetVariable<Order>("PlacedOrder");
+
+        if(requestId.HasValue && responseAddress != null)
+        {
+            var endpoint = await context.GetSendEndpoint(responseAddress);
+            await endpoint.Send(new OrderPlacedEvent() { OrderId = order.OrderId, RequestId = requestId.Value.ToString() });
+        }
     }
 }

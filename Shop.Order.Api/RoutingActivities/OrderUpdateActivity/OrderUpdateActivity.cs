@@ -10,7 +10,7 @@ public class OrderUpdateActivity: IActivity<Order, OrderUpdateLog>
     {
         try
         {
-            var endpoint = await context.GetSendEndpoint(new Uri("rabbitmq://localhost/create_order_consumer"));
+            var endpoint = await context.GetSendEndpoint(new Uri("rabbitmq://localhost/create_order"));
             var order = new OrderCreateCommand()
             {
                 Items = context.Arguments.Items,

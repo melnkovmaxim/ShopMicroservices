@@ -15,7 +15,7 @@ public class ProductAllocateActivity: IActivity<Order.Order, OrderLog>
 
             foreach (var item in context.Arguments.Items)
             {
-                items.Add(new StockProduct(){ProductId = item.ProductId, Quantity = item.Quantity});
+                items.Add(new StockProduct(){Id = item.ProductId, Quantity = item.Quantity});
             }
             
             var productReleaseCommand = new ProductReleaseCommand() { Items = items };

@@ -1,7 +1,9 @@
-﻿namespace Shop.Infrastructure.Inventory;
+﻿using Shop.Infrastructure.Repositories;
 
-public class StockProduct
+namespace Shop.Infrastructure.Inventory;
+
+public class StockProduct: IEntity
 {
-    public string ProductId { get; set; } = null!;
+    public string Id { get; set; } = null!;
     public int Quantity { get; set; }
 }

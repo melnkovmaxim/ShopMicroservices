@@ -1,18 +1,18 @@
 ﻿using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using Shop.Infrastructure.Inventory;
+using Shop.Infrastructure.Repositories;
 
 namespace Shop.Inventory.DataProvider.Repositories;
 
-public class StockRepository : IStockRepository
+public class StockRepository : RepositoryBase<StockProduct>, IStockRepository
 {
     private readonly IMongoClient _mongoClient;
-    private readonly IMongoCollection<StockProduct> _productCollection;
 
     public StockRepository(IMongoDatabase mongo, IMongoClient mongoClient)
+        :base(mongo.GetCollection<StockProduct>(nameof(StockProduct)))
     {
         _mongoClient = mongoClient;
-        _productCollection = mongo.GetCollection<StockProduct>(nameof(StockProduct));
     }
 
     public async Task AllocateProductsAsync(ProductAllocateCommand command)
@@ -25,11 +25,11 @@ public class StockRepository : IStockRepository
         {
             foreach (var item in command.Products)
             {
-                var product = await GetProductByIdAsync(item.ProductId);
+                var product = await GetProductByIdAsync(item.Id);
 
                 product.Quantity += item.Quantity;
 
-                await _productCollection.ReplaceOneAsync(x => x.ProductId == item.ProductId, product);
+                await _collection.ReplaceOneAsync(x => x.Id == item.Id, product);
             }
 
             await session.CommitTransactionAsync();
@@ -42,32 +42,23 @@ public class StockRepository : IStockRepository
 
     public async Task ReleaseProductsAsync(ProductReleaseCommand command)
     {
-        var session = await _mongoClient.StartSessionAsync();
-
-        session.StartTransaction();
-
-        try
+        var productsForUpdate = new List<StockProduct>();
+        
+        foreach (var item in command.Items)
         {
-            foreach (var item in command.Items)
-            {
-                var product = await GetProductByIdAsync(item.ProductId);
+            var product = await GetProductByIdAsync(item.Id);
 
-                product.Quantity -= item.Quantity;
+            product.Quantity -= item.Quantity;
 
-                await _productCollection.ReplaceOneAsync(x => x.ProductId == item.ProductId, product);
-            }
-
-            await session.CommitTransactionAsync();
+            productsForUpdate.Add(product);
         }
-        finally
-        {
-            await session.AbortTransactionAsync();
-        }
+        
+        await UpdateManyAsync(productsForUpdate);
     }
 
     private async Task<StockProduct> GetProductByIdAsync(string productId)
     {
-        var existedProduct = await _productCollection.AsQueryable().FirstOrDefaultAsync(x => x.ProductId == productId);
+        var existedProduct = await _collection.AsQueryable().FirstOrDefaultAsync(x => x.Id == productId);
 
         return existedProduct ?? new StockProduct();
     }
